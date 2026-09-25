@@ -1,0 +1,60 @@
+CREATE TABLE student_results (
+    id INT PRIMARY KEY,
+    name VARCHAR(50),
+    math INT,
+    science INT,
+    english INT
+);
+INSERT INTO student_results VALUES
+(1, 'Rahul', 85, 90, 88),
+(2, 'Priya', 92, 95, 90),
+(3, 'Arjun', 70, 75, 68),
+(4, 'Sneha', 88, 82, 91),
+(5, 'Kiran', 55, 60, 58);
+SELECT
+    name,
+    math,
+    science,
+    english,
+    math + science + english AS total,
+    (math + science + english) / 3.0 AS average
+FROM student_results;
+SELECT
+    name,
+    math + science + english AS total
+FROM student_results
+ORDER BY total DESC;
+SELECT
+    name,
+    CASE
+        WHEN math >= 40
+         AND science >= 40
+         AND english >= 40
+        THEN 'PASS'
+        ELSE 'FAIL'
+    END AS result
+FROM student_results;
+
+OUTPUT:
+name   | math | science | english | total | average
+-------|------|---------|---------|-------|--------
+Rahul  | 85   | 90      | 88      | 263   | 87.67
+Priya  | 92   | 95      | 90      | 277   | 92.33
+Arjun  | 70   | 75      | 68      | 213   | 71.00
+Sneha  | 88   | 82      | 91      | 261   | 87.00
+Kiran  | 55   | 60      | 58      | 173   | 57.67
+name  | total
+------|------
+Priya | 277
+Rahul | 263
+Sneha | 261
+Arjun | 213
+Kiran | 173
+name   | result
+-------|-------
+Rahul  | PASS
+Priya  | PASS
+Arjun  | PASS
+Sneha  | PASS
+Kiran  | PASS
+
